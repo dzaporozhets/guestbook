@@ -5,5 +5,7 @@
   (html5
     [:head
      [:title "Welcome to guestbook"]
+     (include-css "/css/bootstrap.min.css")
      (include-css "/css/screen.css")]
-    [:body body]))
+    [:body
+     [:div.container body]]))
