@@ -32,4 +32,19 @@
       [:name :message :timestamp]
       [name message (new java.util.Date)])))
 
+(defn create-user-table []
+  (sql/with-connection
+    db
+    (sql/create-table
+      :users
+      [:id "varchar(20) PRIMARY KEY"]
+      [:pass "varchar(100)"])))
 
+(defn add-user-record [user]
+  (sql/with-connection db
+    (sql/insert-record :users user)))
+
+(defn get-user [id]
+  (sql/with-connection db
+    (sql/with-query-results
+      res ["select * from users where id = ?" id] (first res))))
